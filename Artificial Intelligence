@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+public class AIChatbot {
+
+    static String getResponse(String input) {
+
+        input = input.toLowerCase().trim();
+
+        // Greeting
+        if (input.contains("hello")
+                || input.contains("hi")
+                || input.contains("hey")) {
+
+            return "Hello! How can I help you?";
+        }
+
+        // Name
+        if (input.contains("your name")
+                || input.contains("who are you")) {
+
+            return "I am JavaBot, a simple AI chatbot.";
+        }
+
+        // Programming
+        if (input.contains("java")) {
+
+            return "Java is an object-oriented programming language.";
+        }
+
+        if (input.contains("python")) {
+
+            return "Python is a popular high-level programming language.";
+        }
+
+        // College
+        if (input.contains("college")) {
+
+            return "I can help you with basic college-related questions.";
+        }
+
+        // Study
+        if (input.contains("study")
+                || input.contains("exam")) {
+
+            return "Create a study schedule and practice regularly.";
+        }
+
+        // Internship
+        if (input.contains("internship")) {
+
+            return "Internships help students gain practical experience.";
+        }
+
+        // Time
+        if (input.contains("time")) {
+
+            return "You can check the current time on your device.";
+        }
+
+        // Thanks
+        if (input.contains("thank")) {
+
+            return "You're welcome!";
+        }
+
+        // Bye
+        if (input.contains("bye")
+                || input.contains("exit")
+                || input.contains("quit")) {
+
+            return "Goodbye! Have a great day.";
+        }
+
+        return "Sorry, I don't understand that yet. "
+                + "Please try asking another question.";
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=================================");
+        System.out.println("          JAVA AI CHATBOT");
+        System.out.println("=================================");
+
+        System.out.println(
+                "Type 'bye' to exit the chatbot."
+        );
+
+        while (true) {
+
+            System.out.print("\nYou: ");
+
+            String input = sc.nextLine();
+
+            String response = getResponse(input);
+
+            System.out.println("Bot: " + response);
+
+            if (input.equalsIgnoreCase("bye")
+                    || input.equalsIgnoreCase("exit")
+                    || input.equalsIgnoreCase("quit")) {
+
+                break;
+            }
+        }
+
+        sc.close();
+    }
+}
