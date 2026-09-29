@@ -1,0 +1,131 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Student {
+    String name;
+    ArrayList<Double> grades;
+
+    Student(String name, ArrayList<Double> grades) {
+        this.name = name;
+        this.grades = grades;
+    }
+
+    double getAverage() {
+        double sum = 0;
+
+        for (double grade : grades) {
+            sum += grade;
+        }
+
+        return sum / grades.size();
+    }
+
+    double getHighest() {
+        double highest = grades.get(0);
+
+        for (double grade : grades) {
+            if (grade > highest) {
+                highest = grade;
+            }
+        }
+
+        return highest;
+    }
+
+    double getLowest() {
+        double lowest = grades.get(0);
+
+        for (double grade : grades) {
+            if (grade < lowest) {
+                lowest = grade;
+            }
+        }
+
+        return lowest;
+    }
+}
+
+public class StudentGradeTracker {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        ArrayList<Student> students = new ArrayList<>();
+
+        System.out.println("=================================");
+        System.out.println("       STUDENT GRADE TRACKER");
+        System.out.println("=================================");
+
+        System.out.print("Enter number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+
+            System.out.println("\nStudent " + (i + 1));
+
+            System.out.print("Enter student name: ");
+            String name = sc.nextLine();
+
+            ArrayList<Double> grades = new ArrayList<>();
+
+            System.out.print("Enter number of subjects: ");
+            int subjects = sc.nextInt();
+
+            for (int j = 0; j < subjects; j++) {
+                System.out.print("Enter grade for subject "
+                        + (j + 1) + ": ");
+
+                double grade = sc.nextDouble();
+                grades.add(grade);
+            }
+
+            sc.nextLine();
+
+            students.add(new Student(name, grades));
+        }
+
+        System.out.println("\n=================================");
+        System.out.println("         STUDENT REPORT");
+        System.out.println("=================================");
+
+        for (Student student : students) {
+
+            System.out.println("\nName: " + student.name);
+
+            System.out.print("Grades: ");
+
+            for (double grade : student.grades) {
+                System.out.print(grade + " ");
+            }
+
+            System.out.printf("\nAverage: %.2f",
+                    student.getAverage());
+
+            System.out.println("\nHighest: "
+                    + student.getHighest());
+
+            System.out.println("Lowest: "
+                    + student.getLowest());
+
+            if (student.getAverage() >= 90) {
+                System.out.println("Grade: A");
+            } else if (student.getAverage() >= 75) {
+                System.out.println("Grade: B");
+            } else if (student.getAverage() >= 60) {
+                System.out.println("Grade: C");
+            } else if (student.getAverage() >= 40) {
+                System.out.println("Grade: D");
+            } else {
+                System.out.println("Grade: F");
+            }
+        }
+
+        System.out.println("\n=================================");
+        System.out.println("Report generated successfully.");
+        System.out.println("=================================");
+
+        sc.close();
+    }
+}
